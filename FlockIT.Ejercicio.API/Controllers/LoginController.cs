@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace FlockIT.Ejercicio.API.Controllers
 {
@@ -31,7 +30,7 @@ namespace FlockIT.Ejercicio.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult PostLogin([FromBody] LoginData loginData)
         {
-            _logger.LogInformation($"Mensaje para el log con valor: {loginData.UserName}");
+            _logger.LogInformation($"Login para el usuarios: {loginData.UserName}");
 
 
             var res = _loginService.Validate(loginData);
