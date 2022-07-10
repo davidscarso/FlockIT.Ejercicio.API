@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FlockIT.Ejercicio.API.Models
+﻿namespace FlockIT.Ejercicio.API.Models
 {
     public class GeoPoint
     {

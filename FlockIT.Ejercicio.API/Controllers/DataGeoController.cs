@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace FlockIT.Ejercicio.API.Controllers
 {
@@ -17,26 +18,24 @@ namespace FlockIT.Ejercicio.API.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        public DataGeoController(ILogger<DataGeoController> logger,
-                                 IDataGeoService dataGeoService)
+        public DataGeoController(ILogger<DataGeoController> logger, IDataGeoService dataGeoService)
         {
             _dataGeoService = dataGeoService ?? throw new ArgumentNullException(nameof(dataGeoService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
 
-        [HttpGet]
-        [ProducesResponseType(typeof(UserLogin), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult PostLogin([FromBody] LoginData loginData)
+        [HttpGet("{name}")]
+        [ProducesResponseType(typeof(GeoPoint), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetGeoPointByNameAsync(string name)
         {
-            _logger.LogInformation($"Mensaje para el log con valor: {loginData.UserName}");
+            _logger.LogInformation($"Getting GetGeoPoint for: {name}");
 
+            var res = await _dataGeoService.GetPointByNameAsync(name);
 
-            var res = _dataGeoService.Validate(loginData);
-            if (res == null) return BadRequest();
+            if (res == null) return NotFound();
             else return Ok(res);
-
         }
     }
 }
