@@ -7,3 +7,4 @@ EXÁMEN TÉCNICO – Desarrollo .NET Framework/Core
  - UserName: *FCosmes*
  - Password: *qwerty2022*
    
+Se puede mejorar utilizando Entity Framework para resistir los datos de cada provincia en MySql, por ejemeplo. Y crear una tarea programada que la actualice utilixandos BackgroundService.
